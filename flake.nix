@@ -12,9 +12,7 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
-        ];
+      environment.systemPackages = [ pkgs.vim ];
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -31,6 +29,38 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # -- my managed settings --
+      system.primaryUser = "yannickgladow";
+
+      system.defaults.dock = {
+        autohide = true;
+        autohide-delay = 1000.0;   # keep it hidden even on hover (intentional)
+        orientation = "left";
+        mru-spaces = false;
+      };
+
+      system.defaults.trackpad = {
+        Clicking = true;
+        Dragging = false;
+        TrackpadRightClick = true;
+        TrackpadThreeFingerDrag = true;
+        FirstClickThreshold = 1;
+        SecondClickThreshold = 1;
+        TrackpadThreeFingerTapGesture = 0;
+      };
+
+      system.defaults.NSGlobalDomain = {
+        InitialKeyRepeat = 15;
+        KeyRepeat = 2;
+        ApplePressAndHoldEnabled = false;
+        "com.apple.swipescrolldirection" = true;   # natural scroll, explicit
+      };
+
+      # Hostname unified to y-mac (matches your darwinConfigurations."y-mac")
+      networking.computerName = "y-mac";
+      networking.hostName = "y-mac";
+      networking.localHostName = "y-mac";
     };
   in
   {
