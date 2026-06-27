@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
-  home.stateVersion = "25.05"; 
+  home = {
+    stateVersion = "25.05"; 
+    sessionVariables = { EDITOR = "nvim"; KORB_CURL = "curl_safari184_ios"; };
+    sessionPath = [ "$HOME/bin" "$HOME/.local/bin" ];
+    packages = [ pkgs.ripgrep ];
+  };
   programs.home-manager.enable = true;
 
   programs.ghostty = {
@@ -37,6 +42,34 @@
       quick-terminal-position = "top";
     };
   };
+  programs.fzf.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      update = "sudo darwin-rebuild switch --flake ~/nix-config";
+      vim = "nvim"; k = "kubectl"; kc = "kubectx"; kn = "kubens";
+    };
+    history.size = 10000;
+
+    oh-my-zsh = { # "ohMyZsh" without Home Manager
+      enable = true;
+      plugins = [ "git" "docker" "macos" "docker-compose" "z" "per-directory-history" ];
+      theme = "avit";
+    };
+    initContent = ''
+      bindkey "^[[A" history-beginning-search-backward
+      bindkey "^[[B" history-beginning-search-forward
+      # also bind application-cursor-key mode, so it works in all terminals
+      bindkey "^[OA" history-beginning-search-backward
+      bindkey "^[OB" history-beginning-search-forward
+      export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
+      [ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
+    '';
+  };
 
   # autostart Ghostty at login so the quick terminal is always summonable
   launchd.agents.ghostty = {
@@ -46,7 +79,4 @@
       RunAtLoad = true;
     };
   };
-
-  # start tiny to prove it works:
-  home.packages = [ pkgs.ripgrep ];
 }
