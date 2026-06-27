@@ -8,7 +8,7 @@
 
     shellAliases = {
       update = "sudo darwin-rebuild switch --flake ~/nix-config";
-      vim = "nvim"; k = "kubectl"; kc = "kubectx"; kn = "kubens";
+      k = "kubectl"; kc = "kubectx"; kn = "kubens";
     };
     history = {
       size = 50000;

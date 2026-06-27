@@ -38,7 +38,7 @@
         co = "checkout";
         fixup = "!sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash $REV^' -";
       };
-
+    };
 
     # conditional per-folder identity (was [includeIf "gitdir:..."])
     includes = [
