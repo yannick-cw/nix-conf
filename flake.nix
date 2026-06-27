@@ -61,6 +61,11 @@
 
       system.primaryUser = "yannickgladow";
 
+      users.users.yannickgladow = {
+        name = "yannickgladow";
+        home = "/Users/yannickgladow";
+      };
+
       security.pam.services.sudo_local.touchIdAuth = true;
 
       system.defaults.dock = {
