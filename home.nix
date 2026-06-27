@@ -21,6 +21,9 @@
 
       macos-option-as-alt = true;
 
+      # copy selection (incl. double-click word) straight to the system clipboard, iTerm-style
+      copy-on-select = "clipboard";
+
       # tabs merged into the titlebar (single bar, like iTerm) instead of two bars
       macos-titlebar-style = "tabs";
 
