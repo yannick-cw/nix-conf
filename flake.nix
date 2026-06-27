@@ -41,14 +41,19 @@
       nixpkgs.hostPlatform = "aarch64-darwin";
       nixpkgs.config.allowUnfree = true;
 
-      # todo: add soon
-      # homebrew = {
-      #   enable = true;
-      #   onCleanup = "zap";                    # uninstall anything not listed here
-      #   casks = [ "karabiner-elements" "ghostty" /* ... */ ];
-      #   brews = [ ];
-      #   masApps = { };                         # Mac App Store apps by ID
-      # };
+      homebrew = {
+        enable = true;
+        onActivation.cleanup = "none";   # default: only adds, never removes
+        # "uninstall" → removes brew packages NOT in your lists
+        # "zap"       → same, plus deletes their config/data files
+        casks = [
+          "alfred" "anki" "visual-studio-code" "whatsapp" "karabiner-elements" "keycastr"
+          "iterm2" # — drop once on Ghostty setup
+          "ghostty" "firefox" "google-chrome" "obsidian" "steam"
+          "little-snitch" "postman" "signal" "sourcetree" "spotify"
+          "wispr-flow" "calibre"
+        ];
+      };
       fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
       system.primaryUser = "yannickgladow";
