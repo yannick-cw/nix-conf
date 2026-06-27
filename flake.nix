@@ -17,8 +17,18 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
+      nix.settings.trusted-users = [ "yannickgladow" ];
+
+      nix.optimise.automatic = true;          # dedupe store via hardlinks
+      nix.gc = {
+        automatic = true;
+        interval = { Weekday = 0; Hour = 3; Minute = 0; };  # weekly, Sun 3am
+        options = "--delete-older-than 30d";
+      };
+
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
+      programs.zsh.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -29,9 +39,21 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfree = true;
 
-      # -- my managed settings --
+      # todo: add soon
+      # homebrew = {
+      #   enable = true;
+      #   onCleanup = "zap";                    # uninstall anything not listed here
+      #   casks = [ "karabiner-elements" "ghostty" /* ... */ ];
+      #   brews = [ ];
+      #   masApps = { };                         # Mac App Store apps by ID
+      # };
+      fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
+
       system.primaryUser = "yannickgladow";
+
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       system.defaults.dock = {
         autohide = true;
