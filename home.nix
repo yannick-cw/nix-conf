@@ -1,13 +1,12 @@
 { pkgs, ... }:
 {
-  imports = [ ./ghostty.nix ./zsh.nix ];
+  imports = [ ./ghostty.nix ./zsh.nix ./git.nix ];
   home = {
     stateVersion = "25.05"; 
     sessionVariables = { EDITOR = "nvim"; KORB_CURL = "curl_safari184_ios"; };
     sessionPath = [ "$HOME/bin" "$HOME/.local/bin" ];
     packages = with pkgs; [
       jq k9s pandoc python311 ripgrep sbt unar wget fd kubectx mermaid-cli  
-      git           # config still in ~/.gitconfig (migrate to programs.git later)
       neovim        # config still in ~/.config/nvim (migrate to programs.neovim later)
     ];
   };
