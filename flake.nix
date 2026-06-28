@@ -82,6 +82,7 @@
             "spotify"
             "wispr-flow"
             "calibre"
+            "jetbrains-toolbox"
           ];
         };
         fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
@@ -95,28 +96,39 @@
 
         security.pam.services.sudo_local.touchIdAuth = true;
 
-        system.defaults.dock = {
-          autohide = true;
-          autohide-delay = 1000.0; # keep it hidden even on hover (intentional)
-          orientation = "left";
-          mru-spaces = false;
-        };
+        system.defaults = {
 
-        system.defaults.trackpad = {
-          Clicking = true;
-          Dragging = false;
-          TrackpadRightClick = true;
-          TrackpadThreeFingerDrag = true;
-          FirstClickThreshold = 1;
-          SecondClickThreshold = 1;
-          TrackpadThreeFingerTapGesture = 0;
-        };
+          dock = {
+            autohide = true;
+            autohide-delay = 1000.0; # keep it hidden even on hover (intentional)
+            orientation = "left";
+            mru-spaces = false;
+            show-recents = false; # disable recent apps
+          };
 
-        system.defaults.NSGlobalDomain = {
-          InitialKeyRepeat = 15;
-          KeyRepeat = 2;
-          ApplePressAndHoldEnabled = false;
-          "com.apple.swipescrolldirection" = true; # natural scroll, explicit
+          trackpad = {
+            Clicking = true;
+            Dragging = false;
+            TrackpadRightClick = true;
+            TrackpadThreeFingerDrag = true;
+            FirstClickThreshold = 1;
+            SecondClickThreshold = 1;
+            TrackpadThreeFingerTapGesture = 0;
+          };
+
+          finder = {
+            _FXShowPosixPathInTitle = true;
+            AppleShowAllExtensions = true;
+            ShowPathbar = true;
+            ShowStatusBar = true;
+          };
+
+          NSGlobalDomain = {
+            InitialKeyRepeat = 15;
+            KeyRepeat = 2;
+            ApplePressAndHoldEnabled = false;
+            "com.apple.swipescrolldirection" = true; # natural scroll, explicit
+          };
         };
 
         # Hostname unified to y-mac (matches your darwinConfigurations."y-mac")
