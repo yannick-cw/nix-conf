@@ -7,13 +7,12 @@
     ./git.nix
     ./neovim.nix
     inputs.nix-index-database.homeModules.nix-index
-  ]; 
+  ];
   home = {
     stateVersion = "25.05";
     sessionVariables = {
       EDITOR = "nvim";
       KORB_CURL = "curl_safari184_ios";
-      NH_FLAKE = "/Users/yannickgladow/nix-config";
     };
     sessionPath = [
       "$HOME/bin"
@@ -31,20 +30,44 @@
       fd
       kubectx
       mermaid-cli
-      nh
+      bat
+      tealdeer
     ];
   };
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
 
-  programs.nix-index.enable = true;
+    nix-index.enable = true;
 
-  # merged from imports = []
-  programs.nix-index-database.comma.enable = true;
+    # merged from imports = []
+    nix-index-database.comma.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+    nh = {
+      enable = true;
+      flake = "/Users/yannickgladow/nix-config";
+    };
+
+    nix-your-shell.enable = true;
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    fzf.enable = true;
+    gh.enable = true;
+
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      git = true;
+      icons = "auto";
+    };
+
   };
-  programs.fzf.enable = true;
-  programs.gh.enable = true;
+
 }

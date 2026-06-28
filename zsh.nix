@@ -8,20 +8,30 @@
 
     shellAliases = {
       update = "sudo darwin-rebuild switch --flake ~/nix-config";
-      k = "kubectl"; kc = "kubectx"; kn = "kubens";
+      k = "kubectl";
+      kc = "kubectx";
+      kn = "kubens";
+      cat = "bat";
     };
     history = {
       size = 50000;
       save = 50000;
-      ignoreDups = true;          # collapse repeated commands
-      ignoreSpace = true;         # commands starting with space aren't recorded
+      ignoreDups = true; # collapse repeated commands
+      ignoreSpace = true; # commands starting with space aren't recorded
       expireDuplicatesFirst = true;
-      share = true;               # share history live across open shells
-      extended = true;            # timestamps
+      share = true; # share history live across open shells
+      extended = true; # timestamps
     };
-    oh-my-zsh = { # "ohMyZsh" without Home Manager
+    oh-my-zsh = {
+      # "ohMyZsh" without Home Manager
       enable = true;
-      plugins = [ "git" "macos" "docker-compose" "z" "per-directory-history" ];
+      plugins = [
+        "git"
+        "macos"
+        "docker-compose"
+        "z"
+        "per-directory-history"
+      ];
       theme = "avit";
     };
     initContent = ''
