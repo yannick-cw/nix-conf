@@ -37,6 +37,10 @@ require('zen-mode').setup {
     },
   },
 }
+vim.lsp.enable('nixd')
+require('conform').setup {
+  formatters_by_ft = { nix = { "nixfmt" } },
+}
 require('neo-tree').setup {
   default_component_configs = {
     icon = { enabled = false },
@@ -168,6 +172,8 @@ inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
+
+nnoremap <leader>F <cmd>lua require('conform').format()<CR>
 
 inoremap (      ()<Left>
 inoremap (<CR>  (<CR>)<Esc>O

@@ -4,27 +4,35 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    withRuby = false;
+    withPython3 = false;
 
     extraPackages = with pkgs; [
-      ripgrep  
-      fzf     
+      ripgrep
+      fzf
+      nixfmt
+      nixd
     ];
 
     plugins = with pkgs.vimPlugins; [
       rose-pine
 
-      fzf-Wrapper        
-      fzf-vim          
+      fzf-wrapper
+      fzf-vim
 
       neo-tree-nvim
       plenary-nvim
       nui-nvim
 
+      nvim-lspconfig
+
+      conform-nvim
+
       vim-surround
       vim-repeat
       vim-visual-star-search
 
-      vim-polyglot    
+      vim-polyglot
       vim-auto-save
       undotree
       lightline-vim

@@ -21,7 +21,7 @@
     };
     oh-my-zsh = { # "ohMyZsh" without Home Manager
       enable = true;
-      plugins = [ "git" "docker" "macos" "docker-compose" "z" "per-directory-history" ];
+      plugins = [ "git" "macos" "docker-compose" "z" "per-directory-history" ];
       theme = "avit";
     };
     initContent = ''
