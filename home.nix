@@ -23,6 +23,7 @@
       k9s
       pandoc
       python311
+      python314Packages.uv
       ripgrep
       sbt
       unar

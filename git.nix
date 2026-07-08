@@ -31,8 +31,8 @@
 
       alias = {
         pn = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\"";
-        ls = "log --pretty=format:%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset%Cgreen (%cr) --decorate";
-        ll = "log --pretty=format:%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] --decorate --numstat";
+        ls = "log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset%Cgreen (%cr)' --decorate";
+        ll = "log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate --numstat";
         c = "commit -m";
         s = "status";
         co = "checkout";

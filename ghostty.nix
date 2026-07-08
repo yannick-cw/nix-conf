@@ -35,6 +35,7 @@
 
       keybind = [ "global:cmd+grave_accent=toggle_quick_terminal" ];
       quick-terminal-position = "top";
+      quick-terminal-size = "40%";
     };
   };
   # autostart Ghostty at login so the quick terminal is always summonable

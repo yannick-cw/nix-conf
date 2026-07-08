@@ -72,7 +72,6 @@
             "whatsapp"
             "karabiner-elements"
             "keycastr"
-            "iterm2" # — drop once on Ghostty setup
             "ghostty"
             "firefox"
             "google-chrome"
