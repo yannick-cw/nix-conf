@@ -33,7 +33,7 @@
       mermaid-cli
       bat
       tealdeer
-      inputs.korb.packages.${pkgs.system}.default
+      inputs.korb.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
   programs = {

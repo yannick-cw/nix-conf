@@ -29,21 +29,11 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages = [ pkgs.vim ];
 
-        # Necessary for using flakes on this system.
-        nix.settings.experimental-features = "nix-command flakes";
-
-        nix.settings.trusted-users = [ "yannickgladow" ];
-
-        nix.optimise.automatic = true; # dedupe store via hardlinks
-        nix.gc = {
-          automatic = true;
-          interval = {
-            Weekday = 0;
-            Hour = 3;
-            Minute = 0;
-          }; # weekly, Sun 3am
-          options = "--delete-older-than 30d";
-        };
+        # Nix itself is managed by Determinate (its own daemon), not nix-darwin.
+        # This hands off installation management; flakes/nix-command are on by
+        # default under Determinate, and gc/trusted-users are configured through
+        # Determinate's own config (/etc/nix/nix.custom.conf) instead of here.
+        nix.enable = false;
 
         # Enable alternative shell support in nix-darwin.
         # programs.fish.enable = true;
