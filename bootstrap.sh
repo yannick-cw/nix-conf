@@ -2,30 +2,27 @@
 #
 # Fresh-Mac bootstrap.
 #
-# On a new machine the repo isn't cloned yet, so first get GitHub access:
-#   gh auth login
-#   clone two config repos dotfiles + nix
+# Prerequisites (do these manually first, the repo can't be cloned without them):
+#   1. install Homebrew: https://brew.sh
+#   2. brew install gh && gh auth login
+#   3. clone config repos: dotfiles + nix-config
+# Homebrew must exist before running this, the nix-darwin homebrew module
+# manages casks/formulae but does not install brew itself.
 set -euo pipefail
 
 CONFIG_DIR="$HOME/nix-config"
 HOST="y-mac"
 
-# 1. Nix
+# 1. Nix (Determinate macOS-native .pkg, robust APFS volume handling)
 if ! command -v nix >/dev/null 2>&1; then
   echo ">> installing Nix"
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
-    | sh -s -- install --no-confirm
+  curl -fsSL -o /tmp/determinate-nix.pkg \
+    "https://install.determinate.systems/determinate-pkg/stable/Universal"
+  sudo installer -pkg /tmp/determinate-nix.pkg -target /
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
-# 2. Homebrew
-if ! command -v brew >/dev/null 2>&1; then
-  echo ">> installing Homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# 3. First activation
+# 2. First activation
 echo ">> activating nix-darwin (#$HOST)"
 sudo nix run nix-darwin/master#darwin-rebuild \
   --extra-experimental-features "nix-command flakes" \
