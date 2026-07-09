@@ -10,7 +10,8 @@
 # manages casks/formulae but does not install brew itself.
 set -euo pipefail
 
-CONFIG_DIR="$HOME/nix-config"
+# the directory this script lives in, so the flake resolves wherever the repo is cloned
+CONFIG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HOST="y-mac"
 
 # 1. Nix (Determinate macOS-native .pkg, robust APFS volume handling)
