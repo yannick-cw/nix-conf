@@ -40,7 +40,6 @@
       # also bind application-cursor-key mode, so it works in all terminals
       bindkey "^[OA" history-beginning-search-backward
       bindkey "^[OB" history-beginning-search-forward
-      export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
       [ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
     '';
     profileExtra = ''

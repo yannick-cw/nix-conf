@@ -13,6 +13,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       KORB_CURL = "curl_safari184_ios";
+      JAVA_HOME = "${pkgs.jdk21}/zulu-21.jdk/Contents/Home";
     };
     sessionPath = [
       "$HOME/bin"
@@ -26,6 +27,7 @@
       python314Packages.uv
       ripgrep
       sbt
+      curl-impersonate
       unar
       wget
       fd
@@ -34,6 +36,7 @@
       bat
       tealdeer
       inputs.korb.packages.${pkgs.stdenv.hostPlatform.system}.default
+      jdk21
     ];
   };
   programs = {

@@ -41,9 +41,9 @@
     };
 
     # conditional per-folder identity (was [includeIf "gitdir:..."])
-    includes = [
-      { condition = "gitdir:~/workspace/";      path = "~/workspace/.gitconfig"; }
-      { condition = "gitdir:~/otherworkspace/"; path = "~/otherworkspace/.gitconfig"; }
-    ];
+    #includes = [
+      #{ condition = "gitdir:~/workspace/";      path = "~/workspace/.gitconfig"; }
+      #{ condition = "gitdir:~/otherworkspace/"; path = "~/otherworkspace/.gitconfig"; }
+    #];
   };
 }

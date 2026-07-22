@@ -52,7 +52,7 @@
 
         homebrew = {
           enable = true;
-          onActivation.cleanup = "none"; # default: only adds, never removes
+          onActivation.cleanup = "uninstall"; # default: only adds, never removes
           # "uninstall" → removes brew packages NOT in your lists
           # "zap"       → same, plus deletes their config/data files
           casks = [
@@ -73,8 +73,10 @@
             "sourcetree"
             "spotify"
             "wispr-flow"
+            "licecap"
             "calibre"
             "jetbrains-toolbox"
+            "zoom"
           ];
         };
         fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
@@ -96,6 +98,12 @@
             orientation = "left";
             mru-spaces = false;
             show-recents = false; # disable recent apps
+
+            # disable all hot corners (1 = no action)
+            wvous-tl-corner = 1;
+            wvous-tr-corner = 1;
+            wvous-bl-corner = 1;
+            wvous-br-corner = 1;
           };
 
           trackpad = {
@@ -115,11 +123,80 @@
             ShowStatusBar = true;
           };
 
+          WindowManager.StandardHideWidgets = true;
+
           NSGlobalDomain = {
             InitialKeyRepeat = 15;
             KeyRepeat = 2;
             ApplePressAndHoldEnabled = false;
             "com.apple.swipescrolldirection" = true; # natural scroll, explicit
+            "com.apple.sound.beep.volume" = 0.0;
+          };
+
+          CustomUserPreferences."com.apple.symbolichotkeys".AppleSymbolicHotKeys = {
+            "118" = {
+              enabled = true;
+              value = {
+                type = "standard";
+                parameters = [
+                  49
+                  18
+                  524288
+                ];
+              };
+            };
+            "119" = {
+              enabled = true;
+              value = {
+                type = "standard";
+                parameters = [
+                  50
+                  19
+                  524288
+                ];
+              };
+            };
+            "120" = {
+              enabled = true;
+              value = {
+                type = "standard";
+                parameters = [
+                  51
+                  20
+                  524288
+                ];
+              };
+            };
+            "121" = {
+              enabled = true;
+              value = {
+                type = "standard";
+                parameters = [
+                  52
+                  21
+                  524288
+                ];
+              };
+            };
+            "122" = {
+              enabled = true;
+              value = {
+                type = "standard";
+                parameters = [
+                  53
+                  23
+                  524288
+                ];
+              };
+            };
+          };
+
+          CustomUserPreferences.NSGlobalDomain.NSUserKeyEquivalents = {
+            "Fill" = "@~^$f";
+            "Left" = builtins.fromJSON ''"@~^$\u2190"'';
+            "Left & Right" = builtins.fromJSON ''"@~^\u2190"'';
+            "Right" = builtins.fromJSON ''"@~^$\u2192"'';
+            "Right & Left" = builtins.fromJSON ''"@~^\u2192"'';
           };
         };
 
