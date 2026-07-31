@@ -59,6 +59,7 @@
             "alfred"
             "anki"
             "visual-studio-code"
+            "google-drive"
             "whatsapp"
             "karabiner-elements"
             "keycastr"

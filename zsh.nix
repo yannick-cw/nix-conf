@@ -12,6 +12,7 @@
       kc = "kubectx";
       kn = "kubens";
       cat = "bat";
+      claude-search = ".claude/skills/session-search/claude-search";
     };
     history = {
       size = 50000;
