@@ -57,6 +57,8 @@
           # "zap"       → same, plus deletes their config/data files
           casks = [
             "alfred"
+            "steam"
+            "codex"
             "anki"
             "visual-studio-code"
             "google-drive"
@@ -67,7 +69,6 @@
             "firefox"
             "google-chrome"
             "obsidian"
-            "steam"
             "little-snitch"
             "postman"
             "signal"
@@ -90,6 +91,11 @@
         };
 
         security.pam.services.sudo_local.touchIdAuth = true;
+
+        system.activationScripts.postActivation.text = ''
+          # Following line should allow us to avoid a logout/login cycle when changing settings
+          sudo -u yannickgladow /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+        '';
 
         system.defaults = {
 
@@ -135,6 +141,10 @@
           };
 
           CustomUserPreferences."com.apple.symbolichotkeys".AppleSymbolicHotKeys = {
+            # cmd + space for spotlight search
+            "64" = {
+              enabled = false;
+            };
             "118" = {
               enabled = true;
               value = {

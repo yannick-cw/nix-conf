@@ -20,6 +20,7 @@
       "$HOME/.local/bin"
     ];
     packages = with pkgs; [
+      devenv
       jq
       k9s
       pandoc
