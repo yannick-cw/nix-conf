@@ -31,6 +31,7 @@
       curl-impersonate
       unar
       wget
+      vlc-bin
       fd
       kubectx
       mermaid-cli
